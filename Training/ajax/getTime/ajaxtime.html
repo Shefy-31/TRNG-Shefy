@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<head>
+    <title>Current Time</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="current-time">Time : </div>
+</body>
+</html> 
+   
+    <script type="text/javascript">
+        function updateCurrentTime() {
+            $.ajax({
+                url: "getTime.php",
+                dataType: "json",
+                success: function (data) {
+                    $("#current-time").text("Current Time: " + data.time);
+                },
+                error: function () {
+                    $("#current-time").text("Unable to retrieve the current time.");
+                }
+            });
+        }
+        $(document).ready(function(){
+            updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+        });
+        
+    </script>
